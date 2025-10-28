@@ -81,6 +81,33 @@ bool judge(int a[], int n) {
 	return 1;
 }
 
+void next_permutation(string &s)
+{
+	int idx = -1, n = s.size();
+	for(int i=n-2;i>=0;i--)
+	{
+		if(s[i]<s[i+1])
+		{
+			idx = i;
+			break;
+		}
+	}
+	if(idx == -1)
+	{
+		reverse(s.begin(), s.end());
+		return;
+	}
+	for(int i=n-1;i>=0;i--)
+	{
+		if(s[i]>s[idx])
+		{
+			swap(s[i], s[idx]);
+			break;
+		}
+	}
+	reverse(s.begin()+idx+1, s.end());
+}
+
 
 ll ncr(ll n, ll r) {
 	r = min(r, n - r);
@@ -326,4 +353,5 @@ signed main() {
 	cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
 #endif
 	return 0;
+
 }
